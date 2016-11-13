@@ -1,6 +1,6 @@
 <?php namespace SleepingOwl\WithJoin;
 
-use Cache;
+// use Cache;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -189,13 +189,13 @@ class WithJoinEloquentBuilder extends Builder
 	 */
 	protected function getColumns($table)
 	{
-		$cacheKey = '_columns_' . $table;
-		if ($columns = Cache::get($cacheKey))
-		{
-			return $columns;
-		}
+		// $cacheKey = '_columns_' . $table;
+		// if ($columns = Cache::get($cacheKey))
+		// {
+		// 	return $columns;
+		// }
 		$columns = $this->model->getConnection()->getSchemaBuilder()->getColumnListing($table);
-		Cache::put($cacheKey, $columns, 1440);
+		// Cache::put($cacheKey, $columns, 1440);
 		return $columns;
 	}
 
@@ -226,7 +226,7 @@ class WithJoinEloquentBuilder extends Builder
 	{
 		//if passing the relations as arguments, pass on to eloquents with
 		if (is_string($relations)) $relations = func_get_args();
-		
+
 		$includes = null;
 		try
 		{
